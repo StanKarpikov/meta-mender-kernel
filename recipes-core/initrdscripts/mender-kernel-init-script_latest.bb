@@ -11,10 +11,10 @@ RCONFLICTS:${PN} += "                   \
                       systemd-initramfs \
                     "
 RDEPENDS:${PN}    = "                   \
-                      bash              \
-                      coreutils         \
+                      ${@bb.utils.contains('DISTRO_FEATURES', 'busybox', '', 'bash', d)} \
+                      ${@bb.utils.contains('DISTRO_FEATURES', 'busybox', 'busybox', 'coreutils', d)} \
                       kmod              \
-                      util-linux        \
+                      ${@bb.utils.contains('DISTRO_FEATURES', 'busybox', '', 'util-linux', d)} \
                     "
 
 inherit bitbake-variable-substitution

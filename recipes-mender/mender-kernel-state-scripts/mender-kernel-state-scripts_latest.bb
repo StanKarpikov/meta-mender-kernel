@@ -5,9 +5,9 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 ################################################################################
 RDEPENDS:${PN} = " \
-  coreutils        \
+  ${@bb.utils.contains('DISTRO_FEATURES', 'busybox', 'busybox', 'coreutils', d)} \
   rsync            \
-  util-linux       \
+  ${@bb.utils.contains('DISTRO_FEATURES', 'busybox', '', 'util-linux', d)} \
 "
 
 SRC_URI = "                             \
